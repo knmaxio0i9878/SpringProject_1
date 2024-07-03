@@ -1,7 +1,9 @@
 package com.controller;
 
+import java.io.File;
 import java.util.List;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -9,9 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bean.ProductBean;
 import com.dao.ProductDao;
+import com.service.ProductFileUpload;
+
+import ch.qos.logback.core.util.FileUtil;
 
 @Controller
 public class ProductController {
@@ -20,6 +26,9 @@ public class ProductController {
 	
 	@Autowired
 	ProductDao pdao;
+	
+	@Autowired
+	ProductFileUpload pupload;
 
 	@GetMapping("/getproduct")
 	public String getProduct() {
@@ -37,9 +46,12 @@ public class ProductController {
 	
 	@PostMapping("/saveproduct")
 	public String addProduct(ProductBean pbean,Model model) {
+		System.out.println("MasterImageName :-" + pbean.getMasterImage().getOriginalFilename());	
+		
+		pupload.fileUpload(pbean.getMasterImage());
 		pdao.addProduct(pbean);
 		
-		return "redirect:/EcomDetalis";
+		return "redirect:/products";
 	}
 	
 	@Autowired
@@ -62,12 +74,16 @@ public class ProductController {
 	public String deleteName(ProductBean pbean) {
 		
 		System.out.println("Delete Named Product:-"+pbean.getProductName());
-		
-		
-		
 		pdao.deleteProductName(pbean.getProductName());
-		
 		return "redirect:/products";
+	}
+	
+	@GetMapping("/getdetails")
+	public String getDetails(@RequestParam("productId") Integer productId,Model model) {
+		ProductBean pbean = pdao.getSingleProductName(productId);
+		
+		model.addAttribute("singleProduct",pbean);
+		return "EcomGetDetails";
 	}
 	
 }

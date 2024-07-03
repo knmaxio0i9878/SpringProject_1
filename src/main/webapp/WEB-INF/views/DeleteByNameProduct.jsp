@@ -11,7 +11,7 @@
 
 	<h3> Enter a Name of Product to Delete</h3>
 
-		<form action="/namedelete" method="post">
+		<form action="/name" method="post">
 			Delete By Name : <input type="text" name="productName">
 			<br>
 			<input type="submit" value="Submit">		

@@ -35,4 +35,11 @@ public class ProductDao {
 	public void deleteProductName(String productName) {
 		stmt.update("delete from products where productName = ?",  productName);
 	}
+	
+	public ProductBean getSingleProductName(Integer productId) {
+		
+		ProductBean pbean =  stmt.queryForObject("select * from products where productId = ?",
+				new BeanPropertyRowMapper<>(ProductBean.class),new Object[] {productId});
+		return pbean;
+	}
 }

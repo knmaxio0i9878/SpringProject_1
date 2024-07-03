@@ -17,13 +17,11 @@ public class EcommerceController {
 	
 	@GetMapping("/ecom")
 	public String getEcomLogin() {
-		
 		return "EcomLogin";
 	}
 	
 	@PostMapping("/ecomlogin")
 	public String insertIntoDb(EcomBean ebean,Model model) {
-		
 		
 		edao.insert(ebean);
 		return "EcomHome";

@@ -21,9 +21,6 @@
 		<tr>
 			<th>Id</th>
 			<th>Name</th>
-			<th>Category</th>
-			<th>Price</th>
-			<th>Quantity</th>
 			<th>Action</th>
 		</tr>
 		<%
@@ -32,10 +29,7 @@
 				
 					out.println("<td>"+p.getProductId()+"</td>");
 					out.println("<td>"+p.getProductName()+"</td>");
-					out.println("<td>"+p.getCategory()+"</td>");
-					out.println("<td>"+p.getPrice()+"</td>");
-					out.println("<td>"+p.getQty()+"</td>");
-					out.println("<td><a href='delete?productId="+p.getProductId()+"'> Delete</a></td>");
+					out.println("<td><a href='delete?productId="+p.getProductId()+"'> Delete</a> | <a href='getdetails?productId="+p.getProductId()+"'> Details </a></td>");
 				
 				out.println("</tr>");
 			}

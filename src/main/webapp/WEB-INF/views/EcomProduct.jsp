@@ -10,13 +10,14 @@
 
 	<h1> Product </h1>
 	
-	<form action="/saveproduct" method="post">	
+	<form action="/saveproduct" method="post" enctype="multipart/form-data"> 	
 	
 		ProductName : <input type="text" name="productName"><br><br>
 		Category : <input type="text" name="category"><br><br>
 		Quantity : <input type="text" name="qty"><br><br>
 		Price : <input type="text" name="price"><br><br>
-		<br>
+		Image : <input type="file" name="masterImage"><br><br>
+		
 		<input type="submit" value="Submit">
 	
 	</form>
