@@ -9,5 +9,11 @@
 <body>
 
 	<h1>Ecom Home Page</h1>
+	Hello, ${firstname}<br>
+	<!--  <img alt="" src="${image}">-->
+	<img alt="" src="${image}" height="100px" width="100px"/>
+	<br>
+	<a href="list">All Products</a>
+	
 </body>
 </html>

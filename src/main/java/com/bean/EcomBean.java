@@ -1,4 +1,5 @@
 package com.bean;
+import org.springframework.web.multipart.MultipartFile;
 
 public class EcomBean {
 
@@ -6,6 +7,9 @@ public class EcomBean {
 	private String firstname;
 	private String email;
 	private String password;
+	private MultipartFile profileImage;
+	private String imagePath;
+	private String profilepic;
 	public String getId() {
 		return id;
 	}
@@ -30,6 +34,26 @@ public class EcomBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public MultipartFile getProfileImage() {
+		return profileImage;
+	}
+	public void setProfileImage(MultipartFile profileImage) {
+		this.profileImage = profileImage;
+	}
+	
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	public String getProfilepic() {
+		return profilepic;
+	}
+	public void setProfilepic(String profilepic) {
+		this.profilepic = profilepic;
+	}
+	
 	
 	
 }

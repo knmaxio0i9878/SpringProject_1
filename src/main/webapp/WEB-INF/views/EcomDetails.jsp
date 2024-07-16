@@ -35,6 +35,8 @@
 			}
 		%>
 	</table>
+	<br>
+	<a href="ecomlogin">Home Page</a>
 	
 
 </body>

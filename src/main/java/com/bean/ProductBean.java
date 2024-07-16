@@ -10,6 +10,8 @@ public class ProductBean {
 	private String qty;
 	private Float price;
 	private MultipartFile masterImage;
+	private String productimgpath;
+	
 	public Integer getProductId() {
 		return productId;
 	}
@@ -45,6 +47,12 @@ public class ProductBean {
 	}
 	public void setMasterImage(MultipartFile masterImage) {
 		this.masterImage = masterImage;
+	}
+	public String getProductimgpath() {
+		return productimgpath;
+	}
+	public void setProductimgpath(String productimgpath) {
+		this.productimgpath = productimgpath;
 	}
 	
 	

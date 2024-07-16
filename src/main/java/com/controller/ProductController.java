@@ -21,69 +21,77 @@ import ch.qos.logback.core.util.FileUtil;
 
 @Controller
 public class ProductController {
-	
-	
-	
+
 	@Autowired
 	ProductDao pdao;
-	
+
 	@Autowired
 	ProductFileUpload pupload;
 
 	@GetMapping("/getproduct")
 	public String getProduct() {
-		
+
 		return "EcomProduct";
 	}
+
 	@GetMapping("/products")
 	public String Products(Model model) {
-		
+
 		List<ProductBean> product = pdao.getAllProduct();
 		model.addAttribute("product", product);
 		return "EcomDetails";
 	}
-	
-	
+
 	@PostMapping("/saveproduct")
-	public String addProduct(ProductBean pbean,Model model) {
-		System.out.println("MasterImageName :-" + pbean.getMasterImage().getOriginalFilename());	
-		
+	public String addProduct(ProductBean pbean, Model model) {
+
+		pbean.setProductimgpath("productimage\\"+pbean.getMasterImage().getOriginalFilename());
+
+		System.out.println("MasterImageName :-" + pbean.getMasterImage().getOriginalFilename());
+
 		pupload.fileUpload(pbean.getMasterImage());
 		pdao.addProduct(pbean);
-		
+
 		return "redirect:/products";
 	}
-	
+
 	@Autowired
 	JdbcTemplate stmt;
-	
+
 	@GetMapping("/delete")
 	public String deleteProduct(@RequestParam("productId") Integer id) {
-		System.out.println("DeletedId:=	"+id);	
+		System.out.println("DeletedId:=	" + id);
 		pdao.deleteProduct(id);
-			
+
 		return "redirect:/products";
 	}
-	
+
 	@GetMapping("/name")
 	public String nameDeleteGet() {
 		return "DeleteByNameProduct";
 	}
-	
+
 	@PostMapping("/namedelete")
 	public String deleteName(ProductBean pbean) {
-		
-		System.out.println("Delete Named Product:-"+pbean.getProductName());
+
+		System.out.println("Delete Named Product:-" + pbean.getProductName());
 		pdao.deleteProductName(pbean.getProductName());
 		return "redirect:/products";
 	}
-	
+
 	@GetMapping("/getdetails")
-	public String getDetails(@RequestParam("productId") Integer productId,Model model) {
+	public String getDetails(@RequestParam("productId") Integer productId, Model model) {
 		ProductBean pbean = pdao.getSingleProductName(productId);
-		
-		model.addAttribute("singleProduct",pbean);
+
+		model.addAttribute("singleProduct", pbean);
 		return "EcomGetDetails";
 	}
-	
+
+	@GetMapping("/list")
+	public String listProducts(Model model) {
+		List<ProductBean> product = pdao.getAllProduct();
+		model.addAttribute("product", product);
+		return "ListinngProducts";
+	}
+
 }

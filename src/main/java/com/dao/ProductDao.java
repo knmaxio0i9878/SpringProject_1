@@ -17,8 +17,8 @@ public class ProductDao {
 	@Autowired
 	JdbcTemplate stmt;
 	public void addProduct(ProductBean pbean) {
-		stmt.update("insert into products (productName,category,qty,price) values (?,?,?,?)",
-				pbean.getProductName(),pbean.getCategory(),pbean.getQty(),pbean.getPrice());
+		stmt.update("insert into products (productName,category,qty,price,productimgpath) values (?,?,?,?,?)",
+				pbean.getProductName(),pbean.getCategory(),pbean.getQty(),pbean.getPrice(),pbean.getProductimgpath());
 	}
 	
 	public List<ProductBean> getAllProduct(){
@@ -42,4 +42,6 @@ public class ProductDao {
 				new BeanPropertyRowMapper<>(ProductBean.class),new Object[] {productId});
 		return pbean;
 	}
+	
+	
 }

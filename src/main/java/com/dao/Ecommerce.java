@@ -13,6 +13,7 @@ public class Ecommerce {
 	@Autowired
 	JdbcTemplate stmt;
 	public void insert(EcomBean ebean) {
-		stmt.update("insert into ecomuser (id,firstname,email,password) values (?,?,?,?)",ebean.getId(),ebean.getFirstname(),ebean.getEmail(),ebean.getPassword());
+		stmt.update("insert into ecomuser (id,firstname,email,password,profilepic) values (?,?,?,?,?)"
+				,ebean.getId(),ebean.getFirstname(),ebean.getEmail(),ebean.getPassword(),ebean.getImagePath());
 	}
 }
