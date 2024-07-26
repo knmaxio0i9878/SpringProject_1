@@ -63,13 +63,67 @@ body {
 	display: flex;
 	justify-content: center;
 }
+.a1{
+	color:aliceblue;
+}
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 20px;
+    text-align: center;
+  }
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .search-container input[type=text] {
+    padding: 10px;
+    width: 300px; /* Adjust width as needed */
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+  }
+  .search-container button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .search-container button:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+  }
 </style>
+<script>
+  document.getElementById('search-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+    let query = document.getElementById('search-input').value.trim();
+    if (query) {
+      // Perform search functionality (e.g., navigate to search results page)
+      alert('Performing search for: ' + query);
+      // Here you can implement further actions like fetching search results
+    } else {
+      alert('Please enter a search query.');
+    }
+  });
+</script>
 
 </head>
 <body>
 	<%
 	List<ProductBean> product = (List<ProductBean>) request.getAttribute("product");
 	%>
+	<div class="header">
+		<h1></h1>
+		<div class="search-container">
+			<input type="text" placeholder="Search...">
+			<button type="submit">Search</button>
+		</div>
+	</div>
 	<div class="container my-5">
 		<div class="row pb-5 mb-4">
 			<%
@@ -79,7 +133,7 @@ body {
 			<div class="col-lg-3 col-md-6 col-sm-6 d-flex">
 				<div class="card w-100 my-2 shadow-2-strong">
 					   <%out.println("<img src='"+p.getProductimgpath()+"' class='card-img-top' style='aspect-ratio: 1/1' />");
-					   	System.out.println(p.getProductimgpath());
+					   
 					   %>   
 					 <!-- <img src="productimage\iphone 13.jpeg" class='card-img-top'>  -->
 					 
@@ -95,6 +149,7 @@ body {
 							<a href="addtocart?productId=<%=p.getProductId()%>" class="btn border px-2 pt-2 icon-hover" style="background-color: green"><i class="fas fa-solid fa-lg fa-cart-shopping text-light px-1"></i>
 							<a href="#!" class="btn border px-2 pt-2 icon-hover" style="background-color: green"><i class="fas fa-solid fa-heart fa-lg text-light px-1" style="color: white"></i></a> 
 							<a href="#!" class="btn border px-2 pt-2 icon-hover" style="background-color: green"><i	class="fas fa-solid fa-lg px-1  fa-plus text-light" style=""></i> </i></a>
+							<a href="viewproduct?productId=<%=p.getProductId()%>" class="btn border px-2 pt-2 icon-hover" style="background-color: green"><i class="fa-regular fa-eye text-light px-1"  ></i></a>
 						</div>
 
 					</div>
@@ -105,6 +160,11 @@ body {
 			%>
 		</div>
 	</div>
+	
+	<div style="text-align:center">
+		<Button class="btn btn-success"><a href="/yourcart" style="text-decoration:none" class="a1">View Cart <i class="fas fa-solid fa-lg fa-cart-shopping text-light px-1"></i></a></Button>
+	</div>
+	<br/>
 
 
 </body>

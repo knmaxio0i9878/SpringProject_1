@@ -73,7 +73,6 @@ public class ProductController {
 
 	@PostMapping("/namedelete")
 	public String deleteName(ProductBean pbean) {
-
 		System.out.println("Delete Named Product:-" + pbean.getProductName());
 		pdao.deleteProductName(pbean.getProductName());
 		return "redirect:/products";
@@ -82,10 +81,17 @@ public class ProductController {
 	@GetMapping("/getdetails")
 	public String getDetails(@RequestParam("productId") Integer productId, Model model) {
 		ProductBean pbean = pdao.getSingleProductName(productId);
-
 		model.addAttribute("singleProduct", pbean);
 		return "EcomGetDetails";
 	}
+	@GetMapping("/viewproduct")
+	public String viewProduct(@RequestParam("productId") Integer productId, Model model) {
+		ProductBean pbean = pdao.getSingleProductName(productId);
+		model.addAttribute("singleProduct", pbean);
+		return "EcomGetDetails";
+	}
+	
+	
 
 	@GetMapping("/list")
 	public String listProducts(Model model) {
@@ -94,4 +100,5 @@ public class ProductController {
 		return "ListinngProducts";
 	}
 
+	
 }

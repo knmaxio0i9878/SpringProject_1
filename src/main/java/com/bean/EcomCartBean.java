@@ -5,6 +5,7 @@ public class EcomCartBean {
 	private int cartId;
 	private int productId;
 	private String userId;
+	private int qty = 1;
 	public int getCartId() {
 		return cartId;
 	}
@@ -23,6 +24,13 @@ public class EcomCartBean {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	public int getQty() {
+		return qty;
+	}
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+	
 	
 	
 }

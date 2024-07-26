@@ -45,8 +45,9 @@ public class EcommerceController {
 		return "EcomHome";
 	}
 	
-	@GetMapping("/ecomlogin")
-	public String getLogin() {
+	@GetMapping("/")
+	public String getLogin(HttpSession session) {
+		/* session.invalidate(); */
 		return "EcomLogin"; 
 	}
 	@PostMapping("elogin")

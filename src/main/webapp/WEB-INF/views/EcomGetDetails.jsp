@@ -9,10 +9,12 @@
 <body>
 
 	<h2> Details Of A Products </h2> <br>
+	<img alt="" src="${singleProduct.productimgpath}"/>
 	ProductName :---- ${  singleProduct.productName } <br>
 	ProductPrice :---- ${  singleProduct.price } <br>
 	ProductCategory :---- ${  singleProduct.category } <br>
 	ProductQuantity :---- ${  singleProduct.qty } <br>
+	
 	
 
 </body>
